@@ -1,6 +1,10 @@
 package amqp
 
-import "github.com/achilleasa/usrv"
+import (
+	"time"
+
+	"github.com/achilleasa/usrv"
+)
 
 // The internal message type used by the amqp transport.
 type amqpMessage struct {
@@ -14,6 +18,7 @@ type amqpMessage struct {
 	isReply   bool
 	replyTo   string
 	replyChan chan usrv.Message
+	timeout   time.Duration
 }
 
 func (m *amqpMessage) From() string {
